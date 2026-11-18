@@ -13,3 +13,5 @@ export '/paginas3ra/agenda/agenda_widget.dart' show AgendaWidget;
 export '/paginas3ra/mi_cuenta/mi_cuenta_widget.dart' show MiCuentaWidget;
 export '/paginas2da/agregar_mascota_form/agregar_mascota_form_widget.dart'
     show AgregarMascotaFormWidget;
+export '/paginas2da/editar_mascota/editar_mascota_widget.dart'
+    show EditarMascotaWidget;
