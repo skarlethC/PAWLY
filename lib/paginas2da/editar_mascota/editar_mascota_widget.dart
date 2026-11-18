@@ -280,6 +280,13 @@ class _EditarMascotaWidgetState extends State<EditarMascotaWidget> {
                                   width: 120.0,
                                   height: 120.0,
                                   fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(
+                                    'assets/images/error_image.png',
+                                    width: 120.0,
+                                    height: 120.0,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               Text(
