@@ -114,7 +114,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
                       child: Text(
-                        'Hola ${currentUserDisplayName}',
+                        currentUserDisplayName.trim().isEmpty
+                            ? 'Hola'
+                            : 'Hola ${currentUserDisplayName.trim()}',
                         style:
                             FlutterFlowTheme.of(context).headlineSmall.override(
                                   font: GoogleFonts.interTight(
