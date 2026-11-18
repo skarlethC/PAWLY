@@ -1,12 +1,16 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' hide Type;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'editar_mascota_model.dart';
 export 'editar_mascota_model.dart';
 
@@ -60,7 +64,7 @@ class _EditarMascotaWidgetState extends State<EditarMascotaWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<MascotaRecord>(
-      stream: MascotaRecord.getDocument(widget.datosMascota!),
+      stream: MascotaRecord.getDocument(widget!.datosMascota!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -280,6 +284,13 @@ class _EditarMascotaWidgetState extends State<EditarMascotaWidget> {
                                   width: 120.0,
                                   height: 120.0,
                                   fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(
+                                    'assets/images/error_image.png',
+                                    width: 120.0,
+                                    height: 120.0,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               Text(
@@ -1289,7 +1300,7 @@ class _EditarMascotaWidgetState extends State<EditarMascotaWidget> {
                                     EditarMascotaWidget.routeName,
                                     queryParameters: {
                                       'datosMascota': serializeParam(
-                                        widget.datosMascota,
+                                        widget!.datosMascota,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,
@@ -1337,7 +1348,7 @@ class _EditarMascotaWidgetState extends State<EditarMascotaWidget> {
                               padding: EdgeInsets.all(40.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  await widget.datosMascota!
+                                  await widget!.datosMascota!
                                       .update(createMascotaRecordData(
                                     nombre: _model.txtNombreTextController.text,
                                     raza: _model.txtRazaTextController.text,

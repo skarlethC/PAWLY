@@ -9,10 +9,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' hide Type;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'agregar_mascota_form_model.dart';
 export 'agregar_mascota_form_model.dart';
 
@@ -147,6 +150,11 @@ class _AgregarMascotaFormWidgetState extends State<AgregarMascotaFormWidget> {
 
                         var downloadUrls = <String>[];
                         try {
+                          showUploadMessage(
+                            context,
+                            'Uploading file...',
+                            showLoading: true,
+                          );
                           selectedUploadedFiles = selectedMedia
                               .map((m) => FFUploadedFile(
                                     name: m.storagePath.split('/').last,
@@ -168,6 +176,7 @@ class _AgregarMascotaFormWidgetState extends State<AgregarMascotaFormWidget> {
                               .map((u) => u!)
                               .toList();
                         } finally {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
                           _model.isDataUploading_uploadData858 = false;
                         }
                         if (selectedUploadedFiles.length ==
@@ -179,8 +188,10 @@ class _AgregarMascotaFormWidgetState extends State<AgregarMascotaFormWidget> {
                             _model.uploadedFileUrl_uploadData858 =
                                 downloadUrls.first;
                           });
+                          showUploadMessage(context, 'Success!');
                         } else {
                           safeSetState(() {});
+                          showUploadMessage(context, 'Failed to upload data');
                           return;
                         }
                       }
@@ -791,7 +802,7 @@ class _AgregarMascotaFormWidgetState extends State<AgregarMascotaFormWidget> {
                               imagenMascota:
                                   _model.uploadedFileUrl_uploadData858,
                               propietarioUid: currentUserUid,
-                              tipo: widget.especie,
+                              tipo: widget!.especie,
                             ));
 
                         context.pushNamed(HomePageWidget.routeName);
