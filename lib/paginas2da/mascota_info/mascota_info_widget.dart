@@ -4,9 +4,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' hide Type;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'mascota_info_model.dart';
 export 'mascota_info_model.dart';
 
@@ -47,7 +50,7 @@ class _MascotaInfoWidgetState extends State<MascotaInfoWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<MascotaRecord>(
-      stream: MascotaRecord.getDocument(widget.datosMascota!),
+      stream: MascotaRecord.getDocument(widget!.datosMascota!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -182,7 +185,7 @@ class _MascotaInfoWidgetState extends State<MascotaInfoWidget> {
                                     EditarMascotaWidget.routeName,
                                     queryParameters: {
                                       'datosMascota': serializeParam(
-                                        widget.datosMascota,
+                                        widget!.datosMascota,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,
