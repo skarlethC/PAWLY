@@ -122,7 +122,9 @@ class _AgregarMascotaWidgetState extends State<AgregarMascotaWidget> {
                                   : Colors.white,
                               borderRadius: BorderRadius.circular(16.0),
                               border: Border.all(
-                                color: Color(0xFFE0E0E0),
+                                color: _model.especieSeleccionada == 'Gato'
+                                    ? Color(0xFFA9CFF3)
+                                    : Color(0xFFE0E0E0),
                                 width: 1.5,
                               ),
                             ),
@@ -158,6 +160,9 @@ class _AgregarMascotaWidgetState extends State<AgregarMascotaWidget> {
                                           width: 24.0,
                                           height: 24.0,
                                           decoration: BoxDecoration(
+                                            color: _model.especieSeleccionada == 'Gato'
+                                                ? Color(0xFFA9CFF3)
+                                                : Colors.white,
                                             shape: BoxShape.circle,
                                             border: Border.all(
                                               color: Color(0xFFCCCCCC),
@@ -203,7 +208,9 @@ class _AgregarMascotaWidgetState extends State<AgregarMascotaWidget> {
                                   : Colors.white,
                               borderRadius: BorderRadius.circular(16.0),
                               border: Border.all(
-                                color: Color(0xFFA9CFF3),
+                                color: _model.especieSeleccionada == 'Perro'
+                                    ? Color(0xFFA9CFF3)
+                                    : Color(0xFFE0E0E0),
                                 width: 2.0,
                               ),
                             ),
@@ -239,7 +246,9 @@ class _AgregarMascotaWidgetState extends State<AgregarMascotaWidget> {
                                           width: 24.0,
                                           height: 24.0,
                                           decoration: BoxDecoration(
-                                            color: Color(0xFFA9CFF3),
+                                            color: _model.especieSeleccionada == 'Perro'
+                                                ? Color(0xFFA9CFF3)
+                                                : Colors.white,
                                             shape: BoxShape.circle,
                                           ),
                                           child: Icon(
