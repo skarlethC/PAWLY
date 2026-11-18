@@ -153,6 +153,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: EditarMascotaWidget.routeName,
+          path: EditarMascotaWidget.routePath,
+          builder: (context, params) => EditarMascotaWidget(
+            datosMascota: params.getParam(
+              'datosMascota',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['mascota'],
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

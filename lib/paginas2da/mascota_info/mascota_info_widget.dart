@@ -144,6 +144,13 @@ class _MascotaInfoWidgetState extends State<MascotaInfoWidget> {
                                   width: 120.0,
                                   height: 120.0,
                                   fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(
+                                    'assets/images/error_image.png',
+                                    width: 120.0,
+                                    height: 120.0,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               Text(
@@ -170,8 +177,16 @@ class _MascotaInfoWidgetState extends State<MascotaInfoWidget> {
                                     ),
                               ),
                               FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    EditarMascotaWidget.routeName,
+                                    queryParameters: {
+                                      'datosMascota': serializeParam(
+                                        widget.datosMascota,
+                                        ParamType.DocumentReference,
+                                      ),
+                                    }.withoutNulls,
+                                  );
                                 },
                                 text: 'Editar',
                                 options: FFButtonOptions(

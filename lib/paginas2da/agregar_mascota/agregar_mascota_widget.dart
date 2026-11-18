@@ -117,8 +117,9 @@ class _AgregarMascotaWidgetState extends State<AgregarMascotaWidget> {
                             width: 173.0,
                             height: 320.0,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                              color: _model.especieSeleccionada == 'Gato'
+                                  ? Color(0xFFEDF6FE)
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(16.0),
                               border: Border.all(
                                 color: Color(0xFFE0E0E0),
@@ -197,7 +198,9 @@ class _AgregarMascotaWidgetState extends State<AgregarMascotaWidget> {
                             width: 173.0,
                             height: 320.0,
                             decoration: BoxDecoration(
-                              color: Color(0xFFEDF6FE),
+                              color: _model.especieSeleccionada == 'Perro'
+                                  ? Color(0xFFEDF6FE)
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(16.0),
                               border: Border.all(
                                 color: Color(0xFFA9CFF3),
@@ -292,7 +295,7 @@ class _AgregarMascotaWidgetState extends State<AgregarMascotaWidget> {
                       }.withoutNulls,
                     );
                   },
-                  text: 'Continuar',
+                  text: 'Continuar · ${_model.especieSeleccionada}',
                   icon: Icon(
                     Icons.arrow_forward_rounded,
                     size: 20.0,
