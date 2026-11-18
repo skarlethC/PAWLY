@@ -144,6 +144,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
+                          currentUserDisplayName.trim().isEmpty
+                              ? 'Hola'
+                              : 'Hola ${currentUserDisplayName.trim()}',
+                          style: FlutterFlowTheme.of(context).headlineSmall,
+                        ),
+                        Text(
                           'Mis Mascotas',
                           style: FlutterFlowTheme.of(context)
                               .headlineSmall
@@ -238,11 +244,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
-                                            child: Image.network(
-                                              listViewMascotaRecord
-                                                  .imagenMascota,
-                                              fit: BoxFit.cover,
-                                            ),
+                                            child: listViewMascotaRecord
+                                                    .imagenMascota.trim().isEmpty
+                                                ? Image.asset('assets/images/Pawly.blue.png',
+                                                    fit: BoxFit.cover)
+                                                : Image.network(
+                                                    listViewMascotaRecord
+                                                        .imagenMascota,
+                                                    fit: BoxFit.cover,
+                                                    errorBuilder: (_, __, ___) =>
+                                                        Image.asset(
+                                                          'assets/images/Pawly.blue.png',
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                  ),
                                           ),
                                         ),
                                       ),
@@ -296,13 +311,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      AgregarMascotaFormWidget.routeName,
-                                      queryParameters: {
-                                        'especie': serializeParam(
-                                          '',
-                                          ParamType.String,
-                                        ),
-                                      }.withoutNulls,
+                                      AgregarMascotaWidget.routeName,
                                     );
                                   },
                                   child: Container(
